@@ -168,4 +168,18 @@ hr {
 .link-create:hover {
   text-decoration: underline
 }
+
+@media screen and (max-width: 900px){
+  .content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column
+  }
+  .slogan {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
 </style>
