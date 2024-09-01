@@ -1,122 +1,128 @@
 <template>
-    <footer class="footer">
-      <div class="footer-languages">
-        <a v-for="link in languageLinks" :key="link.text" :href="link.url">{{ link.text }}</a>
-      </div>
-      <hr>
-      <div class="footer-sections">
-        <div class="footer-section" v-for="section in footerSections" :key="section.title">
-          <a v-for="link in section.links" :key="link.text" :href="link.url">{{ link.text }}</a>
+    <footer class="facebook-footer">
+        <div class="container">
+            <div class="language-list">
+                <a v-for="language in languages" :key="language" href="#">{{ language }}</a>
+                <button class="add-language">+</button>
+            </div>
+            <hr>
+            <div class="links-list">
+                <a v-for="link in links" :key="link" href="#">{{ link }}</a>
+            </div>
+            <span class="copyright">Meta © {{ currentYear }}</span>
         </div>
-      </div>
-      <div class="footer-copyright">
-        Meta © 2024
-      </div>
     </footer>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    name: 'FacebookFooter',
-    data() {
-      return {
-        languageLinks: [
-          { text: 'Português (Brasil)', url: '#' },
-          { text: 'English (US)', url: '#' },
-          { text: 'Español', url: '#' },
-          { text: 'Français (France)', url: '#' },
-          { text: 'Italiano', url: '#' },
-          { text: 'Deutsch', url: '#' },
-          { text: 'العربية', url: '#' },
-          { text: 'हिन्दी', url: '#' },
-          { text: '中文(简体)', url: '#' },
-          { text: '日本語', url: '#' },
-        ],
-        footerSections: [
-          {
-            title: 'Main',
-            links: [
-              { text: 'Cadastre-se', url: '#' },
-              { text: 'Entrar', url: '#' },
-              { text: 'Messenger', url: '#' },
-              { text: 'Facebook Lite', url: '#' },
-              { text: 'Video', url: '#' },
-              { text: 'Locais', url: '#' },
-              { text: 'Jogos', url: '#' },
-              { text: 'Marketplace', url: '#' },
-              { text: 'Meta Pay', url: '#' },
-              { text: 'Meta Store', url: '#' },
-            ]
-          },
-          {
-            title: 'Meta',
-            links: [
-              { text: 'Meta Quest', url: '#' },
-              { text: 'Meta Ray-Ban', url: '#' },
-              { text: 'Meta AI', url: '#' },
-              { text: 'Sobre', url: '#' },
-              { text: 'Criar anúncio', url: '#' },
-              { text: 'Criar Página', url: '#' },
-              { text: 'Desenvolvedores', url: '#' },
-              { text: 'Carreiras', url: '#' },
-              { text: 'Cookies', url: '#' },
-              { text: 'Escolhas para anúncios', url: '#' },
-            ]
-          },
-          {
-            title: 'Legal',
-            links: [
-              { text: 'Termos', url: '#' },
-              { text: 'Ajuda', url: '#' },
-              { text: 'Política de Privacidade', url: '#' },
-              { text: 'Central de Privacidade', url: '#' },
-              { text: 'Grupos', url: '#' },
-              { text: 'Carregamento de contatos e não usuários', url: '#' },
-            ]
-          }
-        ]
-      };
-    },
-  });
-  </script>
-  
-  <style scoped>
-  .footer {
-  background-color: #f9f9f9;
-  padding: 20px 0;
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
+  name: 'FacebookFooter',
+  setup() {
+    const languages = [
+      'Português (Brasil)', 
+      'English (US)', 'Español', 
+      'Français (France)', 
+      'Italiano', 
+      'Deutsch', 
+      'العربية', 
+      'हिन्दी', 
+      '中文(简体)', 
+      '日本語'
+    ];
+
+    const links = [
+      'Cadastre-se', 
+      'Entrar', 
+      'Messenger', 
+      'Facebook Lite', 
+      'Vídeo', 
+      'Locais', 
+      'Jogos', 
+      'Marketplace', 
+      'Meta Pay', 
+      'Meta Store', 
+      'Meta Quest', 
+      'Meta Ray-Ban', 
+      'Meta AI', 
+      'Instagram', 
+      'Threads', 
+      'Campanhas de arrecadação de fundos', 
+      'Serviços', 
+      'Central de Informações de Votação', 
+      'Política de Privacidade', 
+      'Central de Privacidade', 
+      'Grupos', 
+      'Sobre', 
+      'Criar anúncio', 
+      'Criar Página', 
+      'Desenvolvedores', 
+      'Carreiras', 
+      'Cookies', 
+      'Escolhas para anúncios', 
+      'Termos', 
+      'Ajuda', 
+      'Carregamento de contatos e não usuários'
+    ];
+
+    const currentYear = ref(new Date().getFullYear())
+
+    return { 
+        languages, 
+        links,
+        currentYear
+    };
+  },
+});
+</script>
+
+<style scoped>
+.facebook-footer {
+  background-color: white;
+  color: #8a8d91;;
   font-size: 12px;
-  color: #666;
-  text-align: center;
-  display: inline-block
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.footer-languages a {
-  padding-left: 20px;
-  color: #666;
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.language-list {
+  margin-bottom: 8px;
+}
+
+.language-list a, .links-list a {
+  color: #8a8d91;;
   text-decoration: none;
-  display: inline-block;
+  margin-right: 10px;
 }
 
-.footer-languages a:hover {
+.language-list a:hover, .links-list a:hover {
   text-decoration: underline;
 }
 
-
-.footer-sections a {
-  padding-left: 20px;
-  color: #666;
-  text-decoration: none;
-  display: inline-block
+.add-language {
+  background: none;
+  border: 1px solid;
+  border-radius: 2px;
+  padding: 0 8px;
+  color: #8a8d91;;
+  cursor: pointer;
+  font-size: 12px;
 }
 
-.footer-sections a:hover {
-  text-decoration: underline;
+.links-list {
+  line-height: 1.6;
 }
 
-.footer-copyright {
-  margin-top: 10px;
-  color: #999;
+.copyright {
+  display: flex;
+  margin-top: 20px;
 }
-  </style>
+</style>
